@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/astaxie/beego"
+	"github.com/mvpmvh/beego"
 	_ "source.discoveryeducation.com/users/mhatch/repos/de2/routers"
 )
 

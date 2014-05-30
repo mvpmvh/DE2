@@ -4,7 +4,7 @@ package factories
 
 import (
 	"git.apache.org/thrift.git/lib/go/thrift"
-	"github.com/astaxie/beego"
+	"github.com/mvpmvh/beego"
 	"source.discoveryeducation.com/users/mhatch/repos/de2/services"
 	"source.discoveryeducation.com/users/mhatch/repos/de2/thrift/gen-go/generated/user"
 )

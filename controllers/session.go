@@ -2,7 +2,7 @@ package controllers
 
 import (
 	"fmt"
-	"github.com/astaxie/beego"
+	"github.com/mvpmvh/beego"
 	"source.discoveryeducation.com/users/mhatch/repos/de2/factories"
 	"source.discoveryeducation.com/users/mhatch/repos/de2/models"
 	"source.discoveryeducation.com/users/mhatch/repos/de2/services"

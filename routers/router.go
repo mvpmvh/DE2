@@ -1,7 +1,7 @@
 package routers
 
 import (
-	"github.com/astaxie/beego"
+	"github.com/mvpmvh/beego"
 	"source.discoveryeducation.com/users/mhatch/repos/de2/controllers"
 )
 

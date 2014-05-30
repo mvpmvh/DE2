@@ -8,7 +8,7 @@ import (
 	_ "source.discoveryeducation.com/users/mhatch/repos/de2/routers"
 	"testing"
 
-	"github.com/astaxie/beego"
+	"github.com/mvpmvh/beego"
 	. "github.com/smartystreets/goconvey/convey"
 )
 
