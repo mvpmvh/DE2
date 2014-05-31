@@ -29,14 +29,14 @@ func (this *SessionController) Authenticate() {
 	criteria := models.Criteria{"user": user, "referer": this.Ctx.Request.Referer()}
 
 	if user = this.userService.FindUser(criteria); user.Id == nil {
-		this.Data["ErrorMessage"] = "Invalid username/password"
+		this.Data["ErrorMessages"] = []string{"Invalid username/password"}
 	} else {
-		this.Data["Message"] = "Success!"
+		//TODO: redirect & implement jeff's landing page (BED-20)'
 	}
 
-	this.TplNames = "home.tpl"
+	this.TplNames = "public/login.tpl"
 }
 
 func (this *SessionController) Login() {
-	this.TplNames = "home.tpl"
+	this.TplNames = "public/login.tpl"
 }
