@@ -4,16 +4,14 @@ package taglib
 
 import "errors"
 
-func Params(input ...interface{}) (map[string]interface{}, error) {
+//template function to add arbitrary key/val data to a template's context
+func Params(input ...interface{}) (map[interface{}]interface{}, error) {
 	if len(input)%2 != 0 {
 		return nil, errors.New("input must be in pairs")
 	}
-	dict := make(map[string]interface{}, len(input)/2)
+	dict := make(map[interface{}]interface{}, len(input)/2)
 	for i := 0; i < len(input); i += 2 {
-		key, ok := input[i].(string)
-		if !ok {
-			return nil, errors.New("dict keys must be strings")
-		}
+		key := input[i]
 		dict[key] = input[i+1]
 	}
 	return dict, nil

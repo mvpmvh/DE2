@@ -3,7 +3,7 @@
 {{/* [if IE 7]><html class="no-js lt-ie9 lt-ie8 bootstrapped"><![endif] */}}
 {{/* [if IE 8]><html class="no-js lt-ie9 bootstrapped"><![endif] */}}
 {{/* [if gt IE 8]><!--><html class="no-js bootstrapped"><!--<![endif] */}}
-    <head>
+    
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         <title>
@@ -27,29 +27,3 @@
           <script src="/static/js/html5shiv/html5shiv.js"></script>
           <script src="/static/js/respond/respond.min.js"></script>
         {{/* endif */}}
-    </head>
-	
-	<body>
-		{{/*<cfif local.isExternalUser>
-            <cfoutput>
-                <div id="return-container">
-                    <a href="#local.returnUrl#" id="return-link">Return to #local.partnerName#</a>
-                </div>
-            </cfoutput>
-        </cfif>
-		*/}}
-		
-        <div id="shell-outer">
-            <div id="shell" class="container clearfix">
-                <div id="de-logo" class="pull-left">
-                    <a href="{{config `string` `wwwurl` `google.com`}}" title="Discovery Education"></a>
-                </div>
-
-                {{if not .User}}
-                    <div class="pull-right" id="public-login-btn">
-                        <a href="{{urlfor `SessionController.Login`}}" class="btn btn-de"> <span class="glyphicon glyphicon-lock"></span> LOGIN</a>
-                    </div>
-                {{end}}
-
-            </div>
-        </div>

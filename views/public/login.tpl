@@ -1,5 +1,6 @@
-{{template "public/header.tpl" params "IncludeLayoutCSS" true "IncludeLayoutJS" true "IncludeHeader" true}}
-	<div class="outer-wrapper"> 
+{{template "public/base/base.tpl" append (params "IncludeLayoutCSS" true "IncludeLayoutJS" true "IncludeHeader" true) . }}
+{{define "head"}}{{end}}
+{{define "body"}}
 		{{if .ErrorMessages}}
 			<div class="container errors">
     		    <div class="alert alert-danger alert-dismissable">
@@ -20,7 +21,7 @@
             	    {{if .LoginTemplate.Body}}
             	        {{.LoginTemplate.Body}}
                 	{{else}}
-                	    <p>Use your existing Discovery Education username and password.</p>
+                	    <p>{{i18n .Lang "login.description"}}</p>
                 	{{end}}
             	</div>
 
@@ -30,20 +31,20 @@
                 	{{end}}
 
                 	<div class="form-group">
-                	    <label for="username">Username</label>
-                	    <input class="form-control" autocapitalize="off" autocomplete="on" autocorrect="off" id="username" name="username" title="Username" type="text" value="{{.Username}}" autofocus="autofocus" />
+                	    <label for="username">{{i18n .Lang "username"}}</label>
+                	    <input class="form-control" autocapitalize="off" autocomplete="on" autocorrect="off" id="username" name="username" title="{{i18n .Lang "login description"}}" type="text" value="{{.Username}}" autofocus="autofocus" />
                 	</div>
 
                 	<div class="form-group">
-                	    <label for="password">Password</label>
-                	    <input class="form-control" autocapitalize="off" autocomplete="on" autocorrect="off" id="password" name="password" title="Password" type="password" />
+                	    <label for="password">{{i18n .Lang "password"}}</label>
+                	    <input class="form-control" autocapitalize="off" autocomplete="on" autocorrect="off" id="password" name="password" title="{{i18n .Lang "password"}}" type="password" />
                 	</div>
 
                 	<div id="loginButtonContainer" class="clearfix">
                 	    <ul class="form-links pull-left">
                 	        {{if .LoginTemplate.ShowForgot}}
                             	<li>
-                            	    <a href="{{urlfor `MainController.Forgot`}}">Forgot username or password?</a>
+                            	    <a href="{{urlfor `MainController.Forgot`}}">{{i18n .Lang "forgot username or password"}}</a>
                             	</li>
 							{{end}}
                         	{{if .LoginTemplate.ShowSignUp}}
@@ -52,31 +53,30 @@
 	                            </li>
 							{{end}}
                     	</ul>
-                    	<button id="loginButton" name="loginButton" type="submit" class="btn btn-de pull-right">&nbsp;&nbsp;&nbsp;LOGIN&nbsp;&nbsp;&nbsp;</button>
+                    	<button id="loginButton" name="loginButton" type="submit" class="btn btn-de pull-right">&nbsp;&nbsp;&nbsp;{{i18n .Lang "login"}}&nbsp;&nbsp;&nbsp;</button>
                 	</div>
             	</form>
         	</div>
 
         	{{if .LoginTemplate.ShowSignUp}}
             	<div id="sign-up" class="col-md-6">
-            	    <h2>Register</h2>
+            	    <h2>{{i18n .Lang "Register"}}</h2>
             	    <p>
-            	        If you don't have a registered account with Discovery Education, create an account now. It's free and easy, and allows you to:
+            	        {{i18n .Lang "Register.why"}}
             	    </p>
 
             	    <ul id="freeAccess">
-            	        <li>Access exclusive classroom resources to engage students</li>
-            	        <li>Explore on-demand professional development resources</li>
-            	        <li>Stay up-to-date with the latest news from Discovery Education<br />and its partners</li>
+            	        <li>{{i18n .Lang "Register.access"}}</li>
+            	        <li>{{i18n .Lang "Register.explore"}}</li>
+            	        <li>{{i18n .Lang "Register.stay"}}</li>
             	    </ul>
 
             	    <div id="signUp" class="col-md-6">
             	        <div class="clearfix">
-            	            <a href="{{.SignUpURL}}" class="btn btn-info btn-de">Create an account</a>
+            	            <a href="{{.SignUpURL}}" class="btn btn-info btn-de">{{i18n .Lang "create account"}}</a>
             	        </div>
             	    </div>
             	</div>
         	{{end}}
     	</div>
-	</div>
-{{template "public/footer.tpl"}}
+{{end}}

@@ -1,19 +1,20 @@
 package controllers
 
 import (
-	"fmt"
-	"github.com/mvpmvh/beego"
+	_ "github.com/mvpmvh/beego"
 	"source.discoveryeducation.com/users/mhatch/repos/de2/factories"
 	"source.discoveryeducation.com/users/mhatch/repos/de2/models"
 	"source.discoveryeducation.com/users/mhatch/repos/de2/services"
 )
 
 type SessionController struct {
-	beego.Controller
+	baseController
 	userService *services.UserService
 }
 
 func (this *SessionController) Prepare() {
+	this.baseController.Prepare()
+
 	if this.userService == nil {
 		this.userService = factories.NewUserService()
 	}
@@ -25,7 +26,7 @@ func (this *SessionController) Authenticate() {
 	if err := this.ParseForm(user); err != nil {
 		panic(err)
 	}
-	fmt.Printf("user %#v\n", user)
+	//fmt.Printf("user %#v\n", user)
 	criteria := models.Criteria{"user": user, "referer": this.Ctx.Request.Referer()}
 
 	if user = this.userService.FindUser(criteria); user.Id == nil {
