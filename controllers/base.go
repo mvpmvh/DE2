@@ -12,7 +12,6 @@ type baseController struct {
 }
 
 func (this *baseController) Prepare() {
-
 	// Redirect to make URL clean.
 	if this.setLangVer() {
 		i := strings.Index(this.Ctx.Request.RequestURI, "?")
@@ -61,29 +60,25 @@ func (this *baseController) setLangVer() bool {
 		isNeedRedir = false
 	}
 
-	beego.Info("this.Lang = " + this.Lang)
-	if this.Lang != lang {
-		beego.Info("Setting language to: " + lang)
-		this.Lang = lang
-		this.Data["Lang"] = lang
-		this.Data["CurLang"] = i18n.GetDescriptionByLang(lang)
+	this.Lang = lang
+	this.Data["Lang"] = lang
+	this.Data["CurLang"] = i18n.GetDescriptionByLang(lang)
 
-		// Save language information in cookies.
-		if !hasCookie {
-			this.Ctx.SetCookie("lang", lang, 1<<31-1, "/")
-		}
-
-		langDescriptions := i18n.ListLangDescriptions()
-		otherLangs := make([]string, 0, len(langDescriptions)-1)
-
-		for _, langDesc := range langDescriptions {
-			if this.Data["CurLang"] != langDesc {
-				otherLangs = append(otherLangs, langDesc)
-			}
-		}
-
-		this.Data["OtherLangs"] = otherLangs
+	// Save language information in cookies.
+	if !hasCookie {
+		this.Ctx.SetCookie("lang", lang, 1<<31-1, "/")
 	}
+
+	langDescriptions := i18n.ListLangDescriptions()
+	otherLangs := make([]string, 0, len(langDescriptions)-1)
+
+	for _, langDesc := range langDescriptions {
+		if this.Data["CurLang"] != langDesc {
+			otherLangs = append(otherLangs, langDesc)
+		}
+	}
+
+	this.Data["OtherLangs"] = otherLangs
 
 	return isNeedRedir
 }

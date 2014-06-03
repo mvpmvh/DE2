@@ -1,7 +1,7 @@
 package controllers
 
 import (
-	_ "github.com/mvpmvh/beego"
+	"github.com/mvpmvh/beego"
 	"source.discoveryeducation.com/users/mhatch/repos/de2/factories"
 	"source.discoveryeducation.com/users/mhatch/repos/de2/models"
 	"source.discoveryeducation.com/users/mhatch/repos/de2/services"
@@ -14,10 +14,8 @@ type SessionController struct {
 
 func (this *SessionController) Prepare() {
 	this.baseController.Prepare()
-
-	if this.userService == nil {
-		this.userService = factories.NewUserService()
-	}
+	//TODO: lazy-load user service after beego is capable of singletons
+	this.userService = factories.NewUserService()
 }
 
 func (this *SessionController) Authenticate() {
@@ -26,7 +24,7 @@ func (this *SessionController) Authenticate() {
 	if err := this.ParseForm(user); err != nil {
 		panic(err)
 	}
-	//fmt.Printf("user %#v\n", user)
+	beego.Debug("user %#v\n", user)
 	criteria := models.Criteria{"user": user, "referer": this.Ctx.Request.Referer()}
 
 	if user = this.userService.FindUser(criteria); user.Id == nil {
